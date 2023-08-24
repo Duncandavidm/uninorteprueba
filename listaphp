@@ -1,0 +1,22 @@
+<?php
+// Verificar si se ha enviado una solicitud POST para agregar una tarea
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Obtener la tarea enviada desde el formulario
+    $tarea = $_POST["tarea"];
+
+    // Verificar si la tarea no está vacía antes de guardarla
+    if (!empty($tarea)) {
+        // Abrir o crear un archivo de texto para almacenar las tareas
+        $archivo = fopen("tareas.txt", "a"); // "a" para abrir en modo anexar
+
+        // Escribir la tarea en el archivo
+        fwrite($archivo, $tarea . PHP_EOL); // PHP_EOL agrega un salto de línea
+
+        // Cerrar el archivo
+        fclose($archivo);
+    }
+}
+
+// Redirigir de vuelta a la página principal
+header("Location: index.html");
+?>

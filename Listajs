@@ -1,0 +1,37 @@
+<script>
+    // Función para agregar una tarea a la lista
+    function agregarTarea() {
+        // Obtener el valor del campo de texto
+        var tareaTexto = document.getElementById("tarea").value;
+
+        if (tareaTexto.trim() !== "") {
+            // Crear un elemento de lista (li)
+            var tareaElemento = document.createElement("li");
+            tareaElemento.textContent = tareaTexto;
+
+            // Crear un botón para eliminar la tarea
+            var botonEliminar = document.createElement("button");
+            botonEliminar.textContent = "Eliminar";
+
+            // Agregar un evento para eliminar la tarea al hacer clic en el botón
+            botonEliminar.addEventListener("click", function() {
+                tareaElemento.remove();
+            });
+
+            // Agregar el botón de eliminar a la tarea
+            tareaElemento.appendChild(botonEliminar);
+
+            // Agregar la tarea a la lista
+            document.getElementById("lista-tareas").appendChild(tareaElemento);
+
+            // Limpiar el campo de texto
+            document.getElementById("tarea").value = "";
+        }
+    }
+
+    // Agregar un evento para el formulario
+    document.getElementById("tarea-form").addEventListener("submit", function(e) {
+        e.preventDefault(); // Evitar que el formulario se envíe
+        agregarTarea(); // Llamar a la función para agregar la tarea
+    });
+</script>
